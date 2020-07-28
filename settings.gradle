@@ -1,0 +1,3 @@
+include ':networksdk'
+include ':app'
+rootProject.name = "NetworkSdk"
