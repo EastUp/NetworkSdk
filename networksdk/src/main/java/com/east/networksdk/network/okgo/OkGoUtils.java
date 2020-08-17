@@ -1,35 +1,12 @@
 package com.east.networksdk.network.okgo;
 
-import android.app.Application;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.text.TextUtils;
-import android.util.Log;
-
-import com.east.networksdk.utils.NetworkUtils;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.callback.FileCallback;
-import com.lzy.okgo.callback.StringCallback;
-import com.lzy.okgo.model.HttpParams;
-import com.lzy.okgo.model.Progress;
-import com.lzy.okgo.model.Response;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.OkHttpClient;
-
 /**
  * 描述：对OKGO网络请求的进一步封装，提高代码的复用性,适用于东恒
  * Created by East at 2018/5/17 17:07
  */
 public class OkGoUtils {
 
-    public void init(Application app){
+   /* public void init(Application app){
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         //全局的读取超时时间
         builder.readTimeout(30000, TimeUnit.MILLISECONDS);
@@ -146,7 +123,7 @@ public class OkGoUtils {
     }
 
 
-    /**
+    *//**
      * 带Dailog的请求
      *
      * @param canceledOnTouchOutside 是否点击等待框外面可以关闭
@@ -155,7 +132,7 @@ public class OkGoUtils {
      * @param url
      * @param context
      * @param listener
-     */
+     *//*
     public static void postWithLoadingDialog(boolean canceledOnTouchOutside,final boolean success_pd_dissmiss, JSONObject params, final String url, final Context context, final RequestSuccessListener listener) {
         if(!NetworkUtils.isConnected()){
             showToast( "您还没有联网，请联网后重试...");
@@ -220,7 +197,7 @@ public class OkGoUtils {
     }
 
 
-    /**
+    *//**
      * 带Dailog的请求
      *
      * @param canceledOnTouchOutside 是否点击等待框外面可以关闭
@@ -229,7 +206,7 @@ public class OkGoUtils {
      * @param url
      * @param context
      * @param listener
-     */
+     *//*
     public static void postWithLoadingDialog(boolean canceledOnTouchOutside,final boolean success_pd_dissmiss, JSONObject params, final String url, final Context context, final RequestListener listener) {
         if(!NetworkUtils.isConnected()){
             showToast( "您还没有联网，请联网后重试...");
@@ -297,7 +274,7 @@ public class OkGoUtils {
 
 
 
-    /**
+    *//**
      * 文件下载
      *
      * @param progressDialog
@@ -307,7 +284,7 @@ public class OkGoUtils {
      * @param dir
      * @param file_name
      * @param downloadListener
-     */
+     *//*
     public static void downloadFile(final ProgressDialog progressDialog, final boolean success_pd_dissmiss, final String url, final Context context, String dir, String file_name, final DownloadListener downloadListener) {
         if(!NetworkUtils.isConnected()){
             showToast( "您还没有联网，请联网后重试...");
@@ -378,16 +355,16 @@ public class OkGoUtils {
 //        ToastUtils.show(msg);
     }
 
-    /**
+    *//**
      * 网络请求成功的监听
-     */
+     *//*
     public interface RequestSuccessListener {
         void onSuccessCallBack(JSONObject object);
     }
 
-    /**
+    *//**
      *  网络请求后的回调
-     */
+     *//*
     public static abstract class RequestListener
 
     {
@@ -395,14 +372,14 @@ public class OkGoUtils {
         public void onErrorListener(String error){}
     }
 
-    /**
+    *//**
      *
-     */
+     *//*
     public static abstract class DownloadListener
     {
         public abstract void onSuccess();
         public abstract void downloadProgress(Progress progress);
         void onError(String error){}
-    }
+    }*/
 
 }

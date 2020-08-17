@@ -48,9 +48,9 @@ dependencies {
     androidTestImplementation deps.atsl.ext_junit
     androidTestImplementation deps.espresso.core
 
-    api deps.okgo.runtime
+//    api deps.okgo.runtime
     api deps.retrofit.runtime
-    api deps.retrofit.rxjava2
+    api deps.retrofit.rxjava3
     api deps.retrofit.gson
     api deps.okhttp_logging_interceptor
 }
