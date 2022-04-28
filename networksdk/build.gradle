@@ -1,23 +1,13 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
-    }
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.android.extensions'
+    id 'maven-publish'
 }
-
-apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+group='com.github.eastup'
 
 android {
     compileSdkVersion androidVersion.compileSdk
-    buildToolsVersion androidVersion.buildToolsVersion
-
     defaultConfig {
         minSdkVersion androidVersion.minSdk
         targetSdkVersion androidVersion.targetSdk
@@ -25,14 +15,27 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
@@ -48,11 +51,22 @@ dependencies {
     androidTestImplementation deps.atsl.ext_junit
     androidTestImplementation deps.espresso.core
 
-//    api deps.okgo.runtime
+    //    api deps.okgo.runtime
     api deps.retrofit.runtime
     api deps.retrofit.rxjava3
     api deps.retrofit.gson
     api deps.okhttp_logging_interceptor
 }
 
-apply from: 'networkbintray.gradle' //这个一定得放在最后,不然bintray.gradle中 task':xxx:javadoc' 会失败
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.eastup' //your git id
+                artifactId = 'networksdk' //your-repository
+                version = '1.0.0' // As same as the Tag
+            }
+        }
+    }
+}
